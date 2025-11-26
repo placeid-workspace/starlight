@@ -281,6 +281,104 @@ body {
     50% { border-color: #fff }
 }
 
+.volbox{
+    width:100%;
+    display:flex;
+    justify-content:center;
+    padding:1.5rem 0;
+}
+
+#vol{
+    -webkit-appearance:none;
+    width:200px;
+    height:4px;
+    background:#333;
+    border-radius:5px;
+    outline:none;
+}
+
+#vol::-webkit-slider-thumb{
+    -webkit-appearance:none;
+    width:14px;
+    height:14px;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:0 0 10px rgba(255,255,255,0.5);
+    cursor:pointer;
+}
+
+#vol::-moz-range-thumb{
+    width:14px;
+    height:14px;
+    background:#fff;
+    border-radius:50%;
+    box-shadow:0 0 10px rgba(255,255,255,0.5);
+    cursor:pointer;
+}
+
+.projects {
+    padding: 4rem 0;
+    text-align: center;
+}
+
+.projects-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+.project-card {
+    background: #111;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.project-card:hover {
+    border-color: #fff;
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+.project-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.project-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.project-card pre {
+    background: #000;
+    color: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.project-card a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #fff;
+    text-decoration: underline;
+}
+
 @media (max-width: 768px) {
     .navbar {
         flex-direction: column;
