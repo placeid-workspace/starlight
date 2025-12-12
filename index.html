@@ -7,489 +7,131 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
-
-* {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-}
-
-body {
-background: #000000;
-color: #ffffff;
-font-family: 'JetBrains Mono', monospace;
-min-height: 100vh;
-overflow-x: hidden;
-}
-
-.container {
-max-width: 1400px;
-margin: 0 auto;
-padding: 0 2rem;
-}
-
-.navbar {
-display: flex;
-justify-content: space-between;
-align-items: center;
-padding: 2rem 0;
-border-bottom: 1px solid #333;
-position: relative;
-}
-
-.nav-brand {
-display: flex;
-align-items: center;
-gap: 1rem;
-position: relative;
-}
-
-.logo-glow {
-width: 12px;
-height: 12px;
-background: #fff;
-border-radius: 50%;
-box-shadow: 0 0 20px 5px #fff;
-animation: pulse 2s infinite;
-}
-
-.nav-brand h1 {
-font-weight: 700;
-font-size: 1.8rem;
-letter-spacing: -0.5px;
-text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-}
-
-.ltc-copy {
-position: fixed;
-bottom: 20px;
-right: 20px;
-width: 40px;
-height: 40px;
-background: #000;
-border: 1px solid #333;
-border-radius: 8px;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-transition: all 0.3s ease;
-z-index: 1000;
-}
-
-.ltc-copy:hover {
-border-color: #fff;
-box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-transform: scale(1.1);
-}
-
-.ltc-copy i {
-font-size: 1.2rem;
-color: #fff;
-}
-
-.notification {
-position: fixed;
-bottom: -100px;
-left: 50%;
-transform: translateX(-50%);
-background: #000;
-color: #fff;
-padding: 1rem 2rem;
-border: 1px solid #fff;
-border-radius: 8px;
-box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-z-index: 1000;
-transition: bottom 0.4s ease;
-}
-
-.notification.show {
-bottom: 30px;
-}
-
-@keyframes pulse {
-0%, 100% {
-box-shadow: 0 0 20px 5px #fff;
-opacity: 1;
-}
-50% {
-box-shadow: 0 0 30px 10px #fff;
-opacity: 0.8;
-}
-}
-
-.volbox{
-width:100%;
-display:flex;
-justify-content:center;
-padding:1.5rem 0;
-}
-
-#vol{
--webkit-appearance:none;
-width:200px;
-height:4px;
-background:#333;
-border-radius:5px;
-outline:none;
-}
-
-#vol::-webkit-slider-thumb{
--webkit-appearance:none;
-width:14px;
-height:14px;
-background:#fff;
-border-radius:50%;
-box-shadow:0 0 10px rgba(255,255,255,0.5);
-cursor:pointer;
-}
-
-#vol::-moz-range-thumb{
-width:14px;
-height:14px;
-background:#fff;
-border-radius:50%;
-box-shadow:0 0 10px rgba(255,255,255,0.5);
-cursor:pointer;
-}
-
-.hero {
-padding: 6rem 0 4rem;
-text-align: center;
-}
-
-.hero-title {
-font-size: 4rem;
-font-weight: 700;
-margin-bottom: 1rem;
-letter-spacing: -2px;
-text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
-}
-
-.hero-subtitle {
-font-size: 1.2rem;
-color: #999;
-margin-bottom: 4rem;
-letter-spacing: 2px;
-text-transform: uppercase;
-}
-
-.products-grid {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-gap: 2.5rem;
-padding: 2rem 0 4rem;
-}
-
-.product-card {
-background: #000;
-border: 1px solid #333;
-border-radius: 16px;
-padding: 3rem 2rem;
-transition: all 0.4s ease;
-text-align: center;
-position: relative;
-overflow: hidden;
-}
-
-.product-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.03), transparent);
-transition: left 0.6s ease;
-}
-
-.product-card:hover::before {
-left: 100%;
-}
-
-.product-card:hover {
-border-color: #fff;
-box-shadow: 0 10px 60px rgba(255, 255, 255, 0.15);
-transform: translateY(-10px);
-}
-
-.product-logo {
-width: 120px;
-height: 120px;
-margin: 0 auto 2rem;
-background: #111;
-border: 2px solid #222;
-border-radius: 20px;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: 1.7rem;
-font-weight: 700;
-letter-spacing: -1px;
-transition: all 0.4s ease;
-position: relative;
-overflow: hidden;
-}
-
-.product-logo::after {
-content: '';
-position: absolute;
-inset: 0;
-background: linear-gradient(135deg, rgba(255,255,255,0.05), transparent);
-}
-
-.product-card:hover .product-logo {
-border-color: #444;
-background: #151515;
-transform: scale(1.05);
-box-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
-}
-
-.logo-netflix { color: #E50914; }
-.logo-disney { color: #113CCF; }
-.logo-steam { color: #171A21; background: #fff !important; }
-.logo-paramount { color: #0064FF; }
-.logo-prime { color: #00A8E1; }
-.logo-dazn { color: #FFED00; }
-
-.product-name {
-font-size: 1.6rem;
-font-weight: 600;
-margin-bottom: 1rem;
-color: #fff;
-letter-spacing: -0.5px;
-}
-
-.product-desc {
-font-size: 0.85rem;
-color: #666;
-margin-bottom: 2rem;
-line-height: 1.6;
-}
-
-.product-price {
-font-size: 2.2rem;
-font-weight: 700;
-margin-bottom: 2rem;
-color: #fff;
-text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-}
-
-.buy-btn {
-display: inline-block;
-padding: 1rem 3rem;
-background: #fff;
-border: none;
-border-radius: 10px;
-color: #000;
-text-decoration: none;
-font-weight: 700;
-letter-spacing: 1px;
-transition: all 0.3s ease;
-text-transform: uppercase;
-font-size: 0.9rem;
-}
-
-.buy-btn:hover {
-background: #fff;
-box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
-transform: scale(1.08);
-}
-
-.footer {
-text-align: center;
-padding: 3rem 0;
-border-top: 1px solid #333;
-color: #666;
-font-size: 0.85rem;
-}
-
-@media (max-width: 768px) {
-.hero-title {
-font-size: 2.5rem;
-}
-
-.hero-subtitle {
-font-size: 1rem;
-}
-
-.products-grid {
-grid-template-columns: 1fr;
-gap: 2rem;
-}
-
-.product-logo {
-width: 100px;
-height: 100px;
-font-size: 2rem;
-}
-}
-
-@media (max-width: 480px) {
-.container {
-padding: 0 1rem;
-}
-
-.hero-title {
-font-size: 2rem;
-}
-
-.nav-brand h1 {
-font-size: 1.4rem;
-}
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:#000;color:#fff;font-family:'JetBrains Mono',monospace;min-height:100vh;overflow-x:hidden;}
+.container{max-width:1400px;margin:0 auto;padding:0 2rem;}
+.navbar{display:flex;justify-content:space-between;align-items:center;padding:2rem 0;border-bottom:1px solid #333;}
+.nav-brand{display:flex;align-items:center;gap:1rem;}
+.logo-glow{width:12px;height:12px;background:#fff;border-radius:50%;box-shadow:0 0 20px 5px #fff;animation:pulse 2s infinite;}
+.nav-brand h1{font-weight:700;font-size:1.8rem;letter-spacing:-0.5px;text-shadow:0 0 10px rgba(255,255,255,0.5);}
+.ltc-copy{position:fixed;bottom:20px;right:20px;width:40px;height:40px;background:#000;border:1px solid #333;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .3s;z-index:1000;}
+.ltc-copy:hover{border-color:#fff;box-shadow:0 0 20px rgba(255,255,255,0.3);transform:scale(1.1);}
+.ltc-copy i{font-size:1.2rem;}
+.notification{position:fixed;bottom:-100px;left:50%;transform:translateX(-50%);background:#000;color:#fff;padding:1rem 2rem;border:1px solid #fff;border-radius:8px;box-shadow:0 0 30px rgba(255,255,255,0.3);z-index:1000;transition:bottom .4s;}
+.notification.show{bottom:30px;}
+@keyframes pulse{0%,100%{box-shadow:0 0 20px 5px #fff;opacity:1;}50%{box-shadow:0 0 30px 10px #fff;opacity:0.8;}}
+.volbox{width:100%;display:flex;justify-content:center;padding:1.5rem 0;}
+#vol{-webkit-appearance:none;width:200px;height:4px;background:#333;border-radius:5px;outline:none;}
+#vol::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;background:#fff;border-radius:50%;box-shadow:0 0 10px rgba(255,255,0.5);cursor:pointer;}
+#vol::-moz-range-thumb{width:14px;height:14px;background:#fff;border-radius:50%;box-shadow:0 0 10px rgba(255,255,255,0.5);cursor:pointer;}
+.hero{padding:6rem 0 4rem;text-align:center;}
+.hero-title{font-size:4rem;font-weight:700;margin-bottom:1rem;letter-spacing:-2px;text-shadow:0 0 30px rgba(255,255,255,0.5);}
+.hero-subtitle{font-size:1.2rem;color:#999;margin-bottom:4rem;letter-spacing:2px;text-transform:uppercase;}
+.products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2.5rem;padding:2rem 0 4rem;}
+.product-card{background:#000;border:1px solid #333;border-radius:16px;padding:3rem 2rem;transition:all .4s;text-align:center;position:relative;overflow:hidden;}
+.product-card::before{content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.03),transparent);transition:left .6s;}
+.product-card:hover::before{left:100%;}
+.product-card:hover{border-color:#fff;box-shadow:0 10px 60px rgba(255,255,255,0.15);transform:translateY(-10px);}
+.product-logo{width:120px;height:120px;margin:0 auto 2rem;background:#111;border:2px solid #222;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:1.7rem;font-weight:700;transition:all .4s;position:relative;overflow:hidden;}
+.product-logo::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.05),transparent);}
+.product-card:hover .product-logo{border-color:#444;background:#151515;transform:scale(1.05);box-shadow:0 0 30px rgba(255,255,255,0.1);}
+.logo-netflix{color:#E50914;}
+.logo-disney{color:#113CCF;}
+.logo-steam{color:#171A21;background:#fff !important;}
+.logo-paramount{color:#0064FF;}
+.logo-prime{color:#00A8E1;}
+.logo-dazn{color:#FFED00;}
+.product-name{font-size:1.6rem;font-weight:600;margin-bottom:1rem;}
+.product-desc{font-size:0.85rem;color:#666;margin-bottom:2rem;line-height:1.6;}
+.product-price{font-size:2.2rem;font-weight:700;margin-bottom:2rem;text-shadow:0 0 15px rgba(255,255,255,0.3);}
+.buy-btn{display:inline-block;padding:1rem 3rem;background:#fff;border:none;border-radius:10px;color:#000;text-decoration:none;font-weight:700;letter-spacing:1px;transition:all .3s;text-transform:uppercase;font-size:0.9rem;cursor:pointer;}
+.buy-btn:hover{background:#fff;box-shadow:0 0 40px rgba(255,255,255,0.6);transform:scale(1.08);}
+.footer{text-align:center;padding:3rem 0;border-top:1px solid #333;color:#666;font-size:0.85rem;}
+.modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:9999;}
+.modal{background:#111;border:1px solid #444;border-radius:16px;padding:2.5rem 2rem;width:90%;max-width:420px;text-align:center;opacity:0;transform:scale(0.9);transition:all .3s;}
+.modal.show{opacity:1;transform:scale(1);}
+.modal h2{font-size:2rem;margin-bottom:1rem;}
+.modal p{color:#aaa;margin-bottom:2rem;}
+.modal-buttons{display:flex;flex-direction:column;gap:1rem;}
+.modal-btn{padding:1rem;background:#333;border:1px solid #555;border-radius:10px;color:#fff;font-weight:600;cursor:pointer;transition:all .3s;}
+.modal-btn:hover{background:#555;border-color:#fff;transform:translateY(-3px);box-shadow:0 10px 30px rgba(255,255,255,0.1);}
+.discord-info{margin-top:1.5rem;padding:1rem;background:#2C2F44;border-radius:10px;display:none;}
+.discord-info.show{display:block;}
+.copy-discord{margin-top:1rem;padding:0.8rem 1.5rem;background:#5865F2;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:600;}
+.copy-discord:hover{background:#4752C4;}
+.close-modal{position:absolute;top:12px;right:16px;font-size:1.8rem;cursor:pointer;color:#777;}
+.close-modal:hover{color:#fff;}
+@keyframes pop{to{opacity:1;transform:scale(1);}}
+@media(max-width:768px){.hero-title{font-size:2.5rem;}.products-grid{grid-template-columns:1fr;}.product-logo{width:100px;height:100px;font-size:2rem;}}
+@media(max-width:480px){.container{padding:0 1rem;}.hero-title{font-size:2rem;}.nav-brand h1{font-size:1.4rem;}}
 </style>
 </head>
 <body>
 <audio id="bg" src="assets/sound.mp3" loop preload="auto" playsinline></audio>
-
-<div class="volbox">
-<input id="vol" type="range" min="0" max="100" value="50">
-</div>
-
+<div class="volbox"><input id="vol" type="range" min="0" max="100" value="50"></div>
 <div class="container">
 <nav class="navbar">
-<div class="nav-brand">
-<div class="logo-glow"></div>
-<h1>PLACEID SHOP</h1>
-</div>
+<div class="nav-brand"><div class="logo-glow"></div><h1>PLACEID SHOP</h1></div>
 </nav>
-
-<div class="hero">
-<h1 class="hero-title">Accounts</h1>
-<p class="hero-subtitle">Instant Delivery · Lifetime Warranty</p>
-</div>
-
+<div class="hero"><h1 class="hero-title">Accounts</h1><p class="hero-subtitle">Instant Delivery · Lifetime Warranty</p></div>
 <div class="products-grid">
-<div class="product-card">
-<div class="product-logo logo-netflix">NETFLIX</div>
-<h3 class="product-name">Netflix Premium</h3>
-<p class="product-desc">4K Ultra HD · 4 Screens · Download</p>
-<p class="product-price">$2.50</p>
-<a href="https://t.me/ayrifick22" target="_blank" class="buy-btn">Order Now</a>
+<div class="product-card"><div class="product-logo logo-netflix">NETFLIX</div><h3 class="product-name">Netflix Premium</h3><p class="product-desc">4K Ultra HD · 4 Screens · Download</p><p class="product-price">$2.50</p><a class="buy-btn order-trigger">Order Now</a></div>
+<div class="product-card"><div class="product-logo logo-disney">DISNEY+</div><h3 class="product-name">Disney Plus</h3><p class="product-desc">4K UHD · Downloads · All Content</p><p class="product-price">$0.50</p><a class="buy-btn order-trigger">Order Now</a></div>
+<div class="product-card"><div class="product-logo logo-steam">STEAM</div><h3 class="product-name">Steam Account</h3><p class="product-desc">Full Access · Game Library · Market</p><p class="product-price">$0.20</p><a class="buy-btn order-trigger">Order Now</a></div>
+<div class="product-card"><div class="product-logo logo-paramount">P+</div><h3 class="product-name">Paramount Plus</h3><p class="product-desc">HD Streaming · Live TV · Originals</p><p class="product-price">$0.50</p><a class="buy-btn order-trigger">Order Now</a></div>
+<div class="product-card"><div class="product-logo logo-prime">PRIME</div><h3 class="product-name">Prime Video</h3><p class="product-desc">4K HDR · X-Ray · Exclusive Series</p><p class="product-price">$2.50</p><a class="buy-btn order-trigger">Order Now</a></div>
+<div class="product-card"><div class="product-logo logo-dazn">DAZN</div><h3 class="product-name">DAZN Sports</h3><p class="product-desc">Live Sports · HD · Multi-Device</p><p class="product-price">$0.50</p><a class="buy-btn order-trigger">Order Now</a></div>
 </div>
+<div class="footer"><p>All accounts come with instant delivery and support</p></div>
+</div>
+<div class="ltc-copy" id="ltc-btn" title="Copy LTC Address"><i class="fab fa-litecoin"></i></div>
+<div id="copy-notification" class="notification"><span>LTC address copied!</span></div>
 
-<div class="product-card">
-<div class="product-logo logo-disney">DISNEY+</div>
-<h3 class="product-name">Disney Plus</h3>
-<p class="product-desc">4K UHD · Downloads · All Content</p>
-<p class="product-price">$0.50</p>
-<a href="https://t.me/ayrifick22" target="_blank" class="buy-btn">Order Now</a>
+<div class="modal-overlay" id="contactModal">
+<div class="modal">
+<span class="close-modal">×</span>
+<h2>Contact Me</h2>
+<p>How would you like to order?</p>
+<div class="modal-buttons">
+<button class="modal-btn telegram-btn"><i class="fab fa-telegram-plane"></i> Telegram</button>
+<button class="modal-btn discord-btn"><i class="fab fa-discord"></i> Discord</button>
 </div>
-
-<div class="product-card">
-<div class="product-logo logo-steam">STEAM</div>
-<h3 class="product-name">Steam Account</h3>
-<p class="product-desc">Full Access · Game Library · Market</p>
-<p class="product-price">$0.20</p>
-<a href="https://t.me/ayrifick22" target="_blank" class="buy-btn">Order Now</a>
-</div>
-
-<div class="product-card">
-<div class="product-logo logo-paramount">P+</div>
-<h3 class="product-name">Paramount Plus</h3>
-<p class="product-desc">HD Streaming · Live TV · Originals</p>
-<p class="product-price">$$0.50</p>
-<a href="https://t.me/ayrifick22" target="_blank" class="buy-btn">Order Now</a>
-</div>
-
-<div class="product-card">
-<div class="product-logo logo-prime">PRIME</div>
-<h3 class="product-name">Prime Video</h3>
-<p class="product-desc">4K HDR · X-Ray · Exclusive Series</p>
-<p class="product-price">$2.50</p>
-<a href="https://t.me/ayrifick22" target="_blank" class="buy-btn">Order Now</a>
-</div>
-
-<div class="product-card">
-<div class="product-logo logo-dazn">DAZN</div>
-<h3 class="product-name">DAZN Sports</h3>
-<p class="product-desc">Live Sports · HD · Multi-Device</p>
-<p class="product-price">$$0.50</p>
-<a href="https://t.me/ayrifick22" target="_blank" class="buy-btn">Order Now</a>
+<div class="discord-info" id="discordInfo">
+<p>My Discord username:</p>
+<h3>placeiid</h3>
+<button class="copy-discord" id="copyDiscord">Copy Discord Username</button>
 </div>
 </div>
-
-<div class="footer">
-<p>All accounts come with instant delivery and support</p>
-</div>
-</div>
-
-<div class="ltc-copy" id="ltc-btn" title="Copy LTC Address">
-<i class="fab fa-litecoin"></i>
-</div>
-
-<div id="copy-notification" class="notification">
-<span>LTC address copied!</span>
 </div>
 
 <script>
 document.addEventListener('DOMContentLoaded',function(){
-const ltcBtn=document.getElementById('ltc-btn')
-const notification=document.getElementById('copy-notification')
-const litecoinAddress='LgCn2zpBbWwMfsZG2EfvvwuiYf7Y7JWAZ4'
-ltcBtn.addEventListener('click',function(){
-navigator.clipboard.writeText(litecoinAddress).then(()=>{showNotification()}).catch(()=>{notification.querySelector('span').textContent='Failed to copy';showNotification()})
-})
-function showNotification(){notification.classList.add('show');setTimeout(()=>{notification.classList.remove('show')},3000)}
+const audio=document.getElementById('bg');let played=false;
+async function playAudio(){if(played)return;try{await audio.play();played=true;}catch(e){document.addEventListener('click',playAudio,{once:true});document.addEventListener('keydown',playAudio,{once:true});}}
+playAudio();
+document.getElementById('vol').addEventListener('input',()=>{audio.volume=this.value/100;});
+audio.volume=0.5;
 
-let audio=document.getElementById('bg')
-let played=false
-async function attemptPlay(){
-if(played) return
-try{
-await audio.play()
-played=true
-removeGestureListeners()
-}catch(err){
-try{
-const AC=window.AudioContext||window.webkitAudioContext
-if(AC){
-const ctx=new AC()
-const src=ctx.createMediaElementSource(audio)
-src.connect(ctx.destination)
-await ctx.resume()
-await audio.play()
-played=true
-removeGestureListeners()
-return
-}
-}catch(e){}
-showPlayFallback()
-}
-}
-function removeGestureListeners(){document.removeEventListener('click',attemptPlay);document.removeEventListener('keydown',attemptPlay)}
-function showPlayFallback(){
-if(document.getElementById('bg-play-fallback')) return
-const b=document.createElement('button')
-b.id='bg-play-fallback'
-b.textContent='▶'
-b.style.position='fixed'
-b.style.right='16px'
-b.style.bottom='70px'
-b.style.zIndex='9999'
-b.style.width='40px'
-b.style.height='40px'
-b.style.background='#000'
-b.style.border='1px solid #333'
-b.style.borderRadius='8px'
-b.style.color='#fff'
-b.style.fontSize='16px'
-b.style.cursor='pointer'
-document.body.appendChild(b)
-b.addEventListener('click',async function(){
-try{await audio.play();played=true;removeGestureListeners();b.remove()}catch(e){}
-})
-}
-document.addEventListener('click',attemptPlay)
-document.addEventListener('keydown',attemptPlay)
+const modal=document.getElementById('contactModal');
+const closeBtn=document.querySelector('.close-modal');
+const telegramBtn=document.querySelector('.telegram-btn');
+const discordBtn=document.querySelector('.discord-btn');
+const discordInfo=document.getElementById('discordInfo');
+const copyDiscord=document.getElementById('copyDiscord');
+const notification=document.getElementById('copy-notification');
 
-const v=document.getElementById('vol')
-v.addEventListener('input',function(){
-audio.volume=this.value/100
-})
-audio.volume=0.5
-})
+document.querySelectorAll('.order-trigger').forEach(btn=>{btn.addEventListener('click',e=>{e.preventDefault();modal.style.display='flex';setTimeout(()=>{document.querySelector('.modal').style.opacity='1';document.querySelector('.modal').style.transform='scale(1)';},50);discordInfo.classList.remove('show');});});
+
+closeBtn.onclick=()=>{document.querySelector('.modal').style.opacity='0';document.querySelector('.modal').style.transform='scale(0.9)';setTimeout(()=>{modal.style.display='none';},300);};
+modal.onclick=e=>{if(e.target===modal)closeBtn.click();};
+
+telegramBtn.onclick=()=>{window.open('https://t.me/ayrifick22','_blank');closeBtn.click();};
+discordBtn.onclick=()=>{discordInfo.classList.add('show');};
+
+copyDiscord.onclick=()=>{navigator.clipboard.writeText('placeiid').then(()=>{notification.querySelector('span').textContent='Discord username copied!';notification.classList.add('show');setTimeout(()=>{notification.classList.remove('show');},3000);});};
+
+document.getElementById('ltc-btn').addEventListener('click',()=>{navigator.clipboard.writeText('LgCn2zpBbWwMfsZG2EfvvwuiYf7Y7JWAZ4').then(()=>{notification.querySelector('span').textContent='LTC address copied!';notification.classList.add('show');setTimeout(()=>{notification.classList.remove('show');},3000);});});
+});
 </script>
 </body>
 </html>
